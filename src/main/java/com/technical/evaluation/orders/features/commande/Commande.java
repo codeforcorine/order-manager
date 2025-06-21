@@ -1,4 +1,4 @@
-package com.technical.evaluation.orders.domain.model;
+package com.technical.evaluation.orders.features.commande;
 
 import lombok.Data;
 
