@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface ClientRepository extends JpaRepository<Client, UUID> {
 
     Page<Client> findAll(Pageable pageable);
+
+    boolean existsByNomAndTelephone(String nom, String telephone);
 }
