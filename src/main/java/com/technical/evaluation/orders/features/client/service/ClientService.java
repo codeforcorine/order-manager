@@ -28,7 +28,7 @@ public class ClientService{
         return new CustomPage<>(clients, mapper.clientDtoList(clients.toList()));
     }
     void existsByNomAndTelephone(String nom, String telephone){
-        if(!repository.existsByNomAndTelephone(nom, telephone)) throw new ApplicationException(ApiResponseCode.DATA_ALREADY_EXISTS, "Donnéed déjà existante. ");
+        if(repository.existsByNomAndTelephone(nom, telephone)) throw new ApplicationException(ApiResponseCode.DATA_ALREADY_EXISTS, "Donnéed déjà existante. ");
     }
 
     public SimpleApiResponse create(CreateClientRequest request) {
@@ -36,6 +36,7 @@ public class ClientService{
         Client client = mapper.convertToEntity(request);
         client.setTypeClient(request.getTypeClient().name());
         client.setDateEnregistrement(LocalDateTime.now());
+        repository.save(client);
         return new SimpleApiResponse(ApiResponseCode.SUCCESS.getLabel(), "Client enregistré avec succès.");
     }
 }
