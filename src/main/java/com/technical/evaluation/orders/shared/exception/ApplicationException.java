@@ -21,13 +21,4 @@ public class ApplicationException extends RuntimeException {
         this.code = code;
     }
 
-
-    public ApplicationException(ApiResponseCode code, String message, Object... args) {
-        super(message);
-        this.code = code;
-    }
-
-    public ApplicationException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

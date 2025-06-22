@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.technical.evaluation.orders.shared.dto.ApiResponseCode.BAD_REQUEST;
+import static com.technical.evaluation.orders.shared.dto.ApiResponseCode.DATA_NOT_FOUND;
 
 
 /**
@@ -126,5 +127,17 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             WebRequest webRequest, ApiResponseCode apiResponseCode, String messageKey, List<?> details, HttpStatus httpStatus) {
         return new ResponseEntity<>(new ApiError(apiResponseCode, customMessageSource.getMessage(
                 messageKey, null, webRequest.getLocale()), details == null ? Collections.emptyList() : details), httpStatus);
+    }
+
+    /**
+     * This method handle data not found exception.
+     *
+     * @param e the DataNotFoundException.
+     * @return ResponseEntity<ApiError>.
+     */
+    @ExceptionHandler(DataNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<ApiError> handleDataNotFoundException(DataNotFoundException e) {
+        return new ResponseEntity<>(new ApiError(DATA_NOT_FOUND, e.getLocalizedMessage()), HttpStatus.NOT_FOUND);
     }
 }

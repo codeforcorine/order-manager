@@ -2,6 +2,7 @@ package com.technical.evaluation.orders.features.client.service;
 
 import com.technical.evaluation.orders.features.client.dto.ClientDto;
 import com.technical.evaluation.orders.features.client.dto.CreateClientRequest;
+import com.technical.evaluation.orders.features.client.dto.UpdateClientRequest;
 import com.technical.evaluation.orders.features.client.entity.Client;
 import com.technical.evaluation.orders.features.client.mapper.ClientMapper;
 import com.technical.evaluation.orders.features.client.repository.ClientRepository;
@@ -9,12 +10,14 @@ import com.technical.evaluation.orders.shared.config.CustomPage;
 import com.technical.evaluation.orders.shared.dto.ApiResponseCode;
 import com.technical.evaluation.orders.shared.dto.SimpleApiResponse;
 import com.technical.evaluation.orders.shared.exception.ApplicationException;
+import com.technical.evaluation.orders.shared.exception.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -39,4 +42,19 @@ public class ClientService{
         repository.save(client);
         return new SimpleApiResponse(ApiResponseCode.SUCCESS.getLabel(), "Client enregistré avec succès.");
     }
+
+    public SimpleApiResponse update(UUID id, UpdateClientRequest request) {
+        Client client = repository.findById(id).orElseThrow(() ->
+                new DataNotFoundException("Client non trouvé"));
+
+        mapper.update(client, request);
+        if(request.getTypeClient().name()!= null){
+            client.setTypeClient(request.getTypeClient().name());
+        }
+
+        repository.save(client);
+        return new SimpleApiResponse(ApiResponseCode.SUCCESS.getLabel(), "Client mis à jour avec succès.");
+    }
+
+
 }

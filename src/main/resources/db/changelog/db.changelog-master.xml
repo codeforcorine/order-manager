@@ -6,4 +6,5 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <include file="db/changelog/2025/06/21-01-create_client_table.xml"/>
+    <include file="db/changelog/2025/06/22-01-udpate_client_table.xml"/>
 </databaseChangeLog>

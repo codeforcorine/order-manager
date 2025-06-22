@@ -20,16 +20,18 @@ public class Client {
     @UuidGenerator
     @Column(name = "client_id", nullable = false, unique = true)
     private UUID id;
-    @Column(name = "nom")
+    @Column(name = "nom", nullable = false)
     private String nom;
     @Column(name = "email")
     private String email;
-    @Column(name = "telephone")
+    @Column(name = "telephone", nullable = false)
     private String telephone;
     @Column(name = "adresse")
     private String adresse;
-    @Column(name = "type_client")
+    @Column(name = "type_client", nullable = false)
     private String typeClient;
-    @Column(name = "date_enregistrement")
+    @Column(name = "date_enregistrement", nullable = false)
     private LocalDateTime dateEnregistrement;
+    @Column(name = "date_mise_a_jour")
+    private LocalDateTime dateMiseAJour;
 }
