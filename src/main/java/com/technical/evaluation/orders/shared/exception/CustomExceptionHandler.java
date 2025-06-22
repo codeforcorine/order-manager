@@ -112,7 +112,6 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public static void setJsonResponse(ApiError error, HttpServletResponse response, HttpStatus httpStatus) {
         response.setStatus(httpStatus.value());
         try {
-            // TODO: Maybe set naming strategy to snake_case here.
             String json = mapper.writeValueAsString(error);
             response.setContentType("application/json");
             response.setCharacterEncoding(ENCODING.name());
