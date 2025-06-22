@@ -1,4 +1,4 @@
-package com.technical.evaluation.orders.features.commande;
+package com.technical.evaluation.orders.features.commande.entity;
 
 import com.technical.evaluation.orders.features.client.entity.Client;
 import jakarta.persistence.*;

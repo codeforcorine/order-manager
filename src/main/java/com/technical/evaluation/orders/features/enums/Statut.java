@@ -1,4 +1,4 @@
-package com.technical.evaluation.orders.features.commande;
+package com.technical.evaluation.orders.features.enums;
 
 public enum Statut {
 
