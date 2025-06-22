@@ -6,4 +6,5 @@ import lombok.NoArgsConstructor;
 public class Route {
     public static final String ROOT = "/api";
     public static final String CLIENT = "/clients";
+    public static final String PRODUIT = "/produits";
 }
