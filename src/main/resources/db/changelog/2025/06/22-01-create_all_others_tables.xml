@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1750617594291-1" author="kcorine (generated)">
+        <createSequence incrementBy="50" sequenceName="categorie_produit_seq" startValue="1"/>
+    </changeSet>
+    <changeSet id="1750617594291-2" author="kcorine (generated)">
+        <createTable tableName="article_commande">
+            <column name="article_commande_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_article_commande"/>
+            </column>
+            <column name="commande_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="produit_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantite" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prix_unitaire" type="DECIMAL"/>
+            <column name="total_ligne" type="DECIMAL"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1750617594291-3" author="kcorine (generated)">
+        <createTable tableName="categorie_produit">
+            <column name="categorie_id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_categorie_produit"/>
+            </column>
+            <column name="nom" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="date_creation" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1750617594291-4" author="kcorine (generated)">
+        <createTable tableName="commande">
+            <column name="commande_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_commande"/>
+            </column>
+            <column name="client_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_commande" type="DATETIME"/>
+            <column name="statut" type="VARCHAR(255)"/>
+            <column name="montant_total" type="DECIMAL"/>
+            <column name="adresse_livraison" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1750617594291-5" author="kcorine (generated)">
+        <createTable tableName="fournisseur">
+            <column name="fournisseur_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_fournisseur"/>
+            </column>
+            <column name="nom" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="telephone" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="adresse" type="VARCHAR(255)"/>
+            <column name="type_client" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_enregistrement" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_mise_a_jour" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1750617594291-6" author="kcorine (generated)">
+        <createTable tableName="produit">
+            <column name="produit_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_produit"/>
+            </column>
+            <column name="nom" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="prix" type="DECIMAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantite_stock" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="categorie_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fournisseur_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_enregistrement" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_mise_a_jour" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1750617594291-7" author="kcorine (generated)">
+        <addUniqueConstraint columnNames="nom" constraintName="uc_categorie_produit_nom" tableName="categorie_produit"/>
+    </changeSet>
+    <changeSet id="1750617594291-8" author="kcorine (generated)">
+        <addUniqueConstraint columnNames="nom" constraintName="uc_fournisseur_nom" tableName="fournisseur"/>
+    </changeSet>
+    <changeSet id="1750617594291-9" author="kcorine (generated)">
+        <addUniqueConstraint columnNames="nom" constraintName="uc_produit_nom" tableName="produit"/>
+    </changeSet>
+    <changeSet id="1750617594291-10" author="kcorine (generated)">
+        <addForeignKeyConstraint baseColumnNames="commande_id" baseTableName="article_commande"
+                                 constraintName="FK_ARTICLE_COMMANDE_ON_COMMANDE" referencedColumnNames="commande_id"
+                                 referencedTableName="commande"/>
+    </changeSet>
+    <changeSet id="1750617594291-11" author="kcorine (generated)">
+        <addForeignKeyConstraint baseColumnNames="produit_id" baseTableName="article_commande"
+                                 constraintName="FK_ARTICLE_COMMANDE_ON_PRODUIT" referencedColumnNames="produit_id"
+                                 referencedTableName="produit"/>
+    </changeSet>
+    <changeSet id="1750617594291-12" author="kcorine (generated)">
+        <addForeignKeyConstraint baseColumnNames="client_id" baseTableName="commande"
+                                 constraintName="FK_COMMANDE_ON_CLIENT" referencedColumnNames="client_id"
+                                 referencedTableName="client"/>
+    </changeSet>
+    <changeSet id="1750617594291-13" author="kcorine (generated)">
+        <addForeignKeyConstraint baseColumnNames="categorie_id" baseTableName="produit"
+                                 constraintName="FK_PRODUIT_ON_CATEGORIE" referencedColumnNames="categorie_id"
+                                 referencedTableName="categorie_produit"/>
+    </changeSet>
+    <changeSet id="1750617594291-14" author="kcorine (generated)">
+        <addForeignKeyConstraint baseColumnNames="fournisseur_id" baseTableName="produit"
+                                 constraintName="FK_PRODUIT_ON_FOURNISSEUR" referencedColumnNames="fournisseur_id"
+                                 referencedTableName="fournisseur"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -7,4 +7,5 @@
 
     <include file="db/changelog/2025/06/21-01-create_client_table.xml"/>
     <include file="db/changelog/2025/06/22-01-udpate_client_table.xml"/>
+    <include file="db/changelog/2025/06/22-01-create_all_others_tables.xml"/>
 </databaseChangeLog>
