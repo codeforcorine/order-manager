@@ -9,7 +9,8 @@ import java.math.BigDecimal;
 import java.util.UUID;
 @Data
 @Entity
-@Table(name = "article_commande")
+@Table(name = "article_commande", uniqueConstraints = {
+        @UniqueConstraint(name = "uc_commande_id_produit_id", columnNames = {"commande_id", "produit_id"})})
 public class ArticleCommande {
     @Id
     @UuidGenerator
@@ -20,9 +21,18 @@ public class ArticleCommande {
     private Commande commande;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "produit_id", referencedColumnName = "produit_id", nullable = false)
-    private Produit produitId;
+    private Produit produit;
     private int quantite;
     private BigDecimal prixUnitaire;
     private BigDecimal totalLigne;
+
+
+    public BigDecimal getTotalLigne() {
+        if (prixUnitaire != null && quantite != 0) {
+            return prixUnitaire.multiply(BigDecimal.valueOf(quantite));
+        } else {
+            return BigDecimal.ZERO;
+        }
+    }
 
 }

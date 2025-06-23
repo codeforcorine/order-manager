@@ -55,6 +55,13 @@ public class ClientService{
         repository.save(client);
         return new SimpleApiResponse(ApiResponseCode.SUCCESS.getLabel(), "Client mis à jour avec succès.");
     }
+    public void existsById(UUID id){
+        if(!repository.existsById(id)) throw new ApplicationException(ApiResponseCode.DATA_NOT_FOUND, "Client introuvable dans le système.");
+    }
 
+    public Client findById(UUID id){
+        existsById(id);
+        return repository.findById(id).get();
+    }
 
 }

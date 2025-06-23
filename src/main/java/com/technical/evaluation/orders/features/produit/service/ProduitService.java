@@ -33,6 +33,9 @@ public class ProduitService {
         Page produits = repository.findAll(pageable);
         return new CustomPage<>(produits, mapper.convertToDtos(produits.toList()));
     }
+    public void save(Produit produit){
+        repository.save(produit);
+    }
 
     public SimpleApiResponse create(CreateProduitRequest request) {
         existByNomAndFournisseurId(request.getNom(), request.getFournisseurId());
@@ -64,7 +67,7 @@ public class ProduitService {
     void existById(UUID id){
         if(!repository.existsById(id)) throw  new DataNotFoundException("Nous n'avons pas trouvé le produit dans le système.");
     }
-    Produit findById(UUID id){
+    public Produit findById(UUID id){
         existById(id);
         return repository.findById(id).get();
     }

@@ -21,7 +21,7 @@ public class Commande {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id", referencedColumnName = "client_id", nullable = false)
-    private Client clientId;
+    private Client client;
 
     @Column(name = "date_commande")
     private LocalDateTime dateCommande;
