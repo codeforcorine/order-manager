@@ -8,7 +8,7 @@ import com.technical.evaluation.orders.features.commande.entity.Commande;
 import com.technical.evaluation.orders.features.commande.mapper.CommandeMapper;
 import com.technical.evaluation.orders.features.commande.repository.ArticleCommandeRepository;
 import com.technical.evaluation.orders.features.commande.repository.CommandeRepository;
-import com.technical.evaluation.orders.features.enums.Statut;
+import com.technical.evaluation.orders.shared.utils.Statut;
 import com.technical.evaluation.orders.features.produit.entity.Produit;
 import com.technical.evaluation.orders.features.produit.service.ProduitService;
 import com.technical.evaluation.orders.shared.config.CustomPage;

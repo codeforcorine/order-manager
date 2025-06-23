@@ -4,7 +4,7 @@ import com.technical.evaluation.orders.features.commande.entity.ArticleCommande;
 import com.technical.evaluation.orders.features.commande.entity.Commande;
 import com.technical.evaluation.orders.features.commande.repository.ArticleCommandeRepository;
 import com.technical.evaluation.orders.features.commande.service.CommandeService;
-import com.technical.evaluation.orders.features.enums.Statut;
+import com.technical.evaluation.orders.shared.utils.Statut;
 import com.technical.evaluation.orders.features.inventaire.dto.InventaireResumeDto;
 import com.technical.evaluation.orders.features.inventaire.dto.ProduitStockDto;
 import com.technical.evaluation.orders.features.inventaire.dto.RapportVenteDto;

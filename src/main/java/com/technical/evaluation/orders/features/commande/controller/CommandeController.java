@@ -3,7 +3,7 @@ package com.technical.evaluation.orders.features.commande.controller;
 import com.technical.evaluation.orders.features.commande.dto.CommandeDetailDto;
 import com.technical.evaluation.orders.features.commande.dto.CreateCommandeRequest;
 import com.technical.evaluation.orders.features.commande.service.CommandeService;
-import com.technical.evaluation.orders.features.enums.Statut;
+import com.technical.evaluation.orders.shared.utils.Statut;
 import com.technical.evaluation.orders.shared.config.CustomPage;
 import com.technical.evaluation.orders.shared.dto.SimpleApiResponse;
 import com.technical.evaluation.orders.shared.utils.Route;
