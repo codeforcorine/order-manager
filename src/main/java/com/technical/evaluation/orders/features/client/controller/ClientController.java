@@ -4,6 +4,7 @@ import com.technical.evaluation.orders.features.client.dto.ClientDto;
 import com.technical.evaluation.orders.features.client.dto.CreateClientRequest;
 import com.technical.evaluation.orders.features.client.dto.UpdateClientRequest;
 import com.technical.evaluation.orders.features.client.service.ClientService;
+import com.technical.evaluation.orders.features.commande.dto.CommandeDetailDto;
 import com.technical.evaluation.orders.shared.config.CustomPage;
 import com.technical.evaluation.orders.shared.dto.SimpleApiResponse;
 import com.technical.evaluation.orders.shared.utils.Route;
@@ -66,5 +67,14 @@ public class ClientController {
     @PutMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
     public SimpleApiResponse update(@PathVariable(name = "id") UUID id, @RequestBody @Valid UpdateClientRequest request){
         return service.update(id, request);
+    }
+
+    @Operation(
+            summary = "Liste des commandes du client",
+            description = "Liste des commandes dans le système."
+    )
+    @GetMapping(value = "{id}/commandes", produces = APPLICATION_JSON_VALUE)
+    public CustomPage<CommandeDetailDto> historiqueCommande(@PathVariable(value = "id") UUID id, Pageable pageable){
+        return service.historiqueCommande(id,pageable);
     }
 }

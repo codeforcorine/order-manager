@@ -6,6 +6,14 @@ import com.technical.evaluation.orders.features.client.dto.UpdateClientRequest;
 import com.technical.evaluation.orders.features.client.entity.Client;
 import com.technical.evaluation.orders.features.client.mapper.ClientMapper;
 import com.technical.evaluation.orders.features.client.repository.ClientRepository;
+import com.technical.evaluation.orders.features.commande.dto.CommandeDetailDto;
+import com.technical.evaluation.orders.features.commande.dto.DetailArticleCommande;
+import com.technical.evaluation.orders.features.commande.entity.ArticleCommande;
+import com.technical.evaluation.orders.features.commande.entity.Commande;
+import com.technical.evaluation.orders.features.commande.mapper.CommandeMapper;
+import com.technical.evaluation.orders.features.commande.repository.ArticleCommandeRepository;
+import com.technical.evaluation.orders.features.commande.repository.CommandeRepository;
+import com.technical.evaluation.orders.features.commande.service.CommandeService;
 import com.technical.evaluation.orders.shared.config.CustomPage;
 import com.technical.evaluation.orders.shared.dto.ApiResponseCode;
 import com.technical.evaluation.orders.shared.dto.SimpleApiResponse;
@@ -17,6 +25,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -25,6 +35,9 @@ public class ClientService{
 
     private final ClientRepository repository;
     private final ClientMapper mapper;
+    private final ArticleCommandeRepository articleCommandeRepository;
+    private final CommandeMapper commandeMapper;
+    private final CommandeRepository commandeRepository;
 
     public CustomPage<ClientDto> findAll(Pageable pageable) {
         Page<Client> clients = repository.findAll(pageable);
@@ -62,6 +75,20 @@ public class ClientService{
     public Client findById(UUID id){
         existsById(id);
         return repository.findById(id).get();
+    }
+
+    public CustomPage<CommandeDetailDto> historiqueCommande(UUID id, Pageable pageable) {
+        List<CommandeDetailDto> results = new ArrayList<>();
+        Client client = findById(id);
+        Page<Commande> commandes  = commandeRepository.findAllByClient(client, pageable);
+        for (Commande commande : commandes.toList()){
+            List<ArticleCommande> articleCommandes = articleCommandeRepository.findAllByCommande(commande);
+            List<DetailArticleCommande> articleCommandesDtosList = commandeMapper.convertToListDetailArticleCommande(articleCommandes);
+            CommandeDetailDto result = commandeMapper.convertToCommandeDetailDto(commande);
+            result.setArticles(articleCommandesDtosList);
+            results.add(result);
+        }
+        return new CustomPage<>(commandes, results);
     }
 
 }

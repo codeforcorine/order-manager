@@ -1,5 +1,6 @@
 package com.technical.evaluation.orders.features.commande.repository;
 
+import com.technical.evaluation.orders.features.client.entity.Client;
 import com.technical.evaluation.orders.features.commande.entity.Commande;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,4 +10,5 @@ import java.util.UUID;
 
 public interface CommandeRepository extends JpaRepository<Commande, UUID> {
     Page<Commande> findAll(Pageable pageable);
+    Page<Commande> findAllByClient(Client client, Pageable pageable);
 }
