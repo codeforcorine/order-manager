@@ -18,7 +18,6 @@ public class FournisseurDto implements Serializable {
     String email;
     String telephone;
     String adresse;
-    String typeClient;
     LocalDateTime dateEnregistrement;
     LocalDateTime dateMiseAJour;
 }

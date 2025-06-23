@@ -14,36 +14,6 @@ Développée avec **Spring Boot 3**, **PostgreSQL**, **RabbitMQ**, **Docker**, e
 - 📤 Événements RabbitMQ (optionnel)
 - 🧪 Tests unitaires & d’intégration
 - 📄 Documentation Swagger/OpenAPI
-
-## 📊 Couverture des fonctionnalités
-
-| Module                  | Fonction                                   | Implémentation |
-|-------------------------|--------------------------------------------|----------------|
-| **Clients**             | liste                                      | 70%            |
-|                         | création                                   | 100%           |
-|                         | mise à jour                                | 80%            |
-|                         | historique commandes                       | 80%            |
-|                         | statistiques d'achat                       | 80%            |
-| **Produits**            | liste                                      | 80%            |
-|                         | ajout produit                              | 80%            |
-|                         | mise à jour produit                        | 80%            |
-|                         | mise à jour quantité en stock              | 80%            |
-|                         | liste produits avec stock bas              | 80%            |
-|                         | analyse ventes                             | 80%            |
-| **Commandes**           | créer une nouvelle commande                | 80%            |
-|                         | détail commande                            | 80%            |
-|                         | mise à jour statut commande                | 80%            |
-|                         | annuler commande                           | 80%            |
-|                         | liste commande avec filtre                 | 80%            |
-|                         | traiter un remboursement                   | 0%             |
-| **Inventaire & Analyse**| aperçu inventaire                          | 80%            |
-|                         | analyse ventes                             | 80%            |
-|                         | analyse des tendances de revenu            | 80%            |
-|                         | vérification de santé                      | 80%            |
-| **Documentation**       | Swagger                                    | 50%            |
-|                         | README                                     | 60%            |
-
-
 ---
 
 ## ⚙️ Stack technique
@@ -115,7 +85,6 @@ bash
 
 Couverture minimum :
 
-- 70% sur la couche service
-
+- Tests unitaires
 - Tests d’intégration REST avec @SpringBootTest
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1750679495967-1" author="kcorine (generated)">
+        <addUniqueConstraint columnNames="commande_id, produit_id" constraintName="uc_commande_id_produit_id"
+                             tableName="article_commande"/>
+    </changeSet>
+    <changeSet id="1750679495967-2" author="kcorine (generated)">
+        <dropColumn columnName="type_client" tableName="fournisseur"/>
+    </changeSet>
+
+</databaseChangeLog>

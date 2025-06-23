@@ -30,8 +30,6 @@ public class Fournisseur {
     private String telephone;
     @Column(name = "adresse")
     private String adresse;
-    @Column(name = "type_client", nullable = false)
-    private String typeClient;
     @Column(name = "date_enregistrement", nullable = false)
     private LocalDateTime dateEnregistrement;
     @Column(name = "date_mise_a_jour")
