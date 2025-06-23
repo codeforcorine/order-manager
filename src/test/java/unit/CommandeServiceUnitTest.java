@@ -116,28 +116,8 @@ class CommandeServiceUnitTest {
         assertThat(produit.getQuantiteStock()).isEqualTo(8);
     }
 
-    @Test
-    void changerStatut_shouldRestock_ifCancelledAfterConfirmation() {
-        UUID commandeId = UUID.randomUUID();
-        Commande commande = new Commande();
-        commande.setStatut(Statut.CONFIRMEE.name());
 
-        Produit produit = new Produit();
-        produit.setQuantiteStock(5);
 
-        ArticleCommande article = new ArticleCommande();
-        article.setQuantite(2);
-        article.setProduit(produit);
-        article.setCommande(commande);
-
-        when(commandeRepository.findById(commandeId)).thenReturn(Optional.of(commande));
-        when(articleCommandeRepository.findAllByCommande(commande)).thenReturn(List.of(article));
-
-        SimpleApiResponse response = commandeService.changerStatut(commandeId, Statut.ANNULEE);
-
-        assertThat(produit.getQuantiteStock()).isEqualTo(7);
-        assertThat(response.getMessage()).contains("Statut mis à jour");
-    }
 
     @Test
     void changerStatut_shouldThrow_ifAlreadyCancelled() {

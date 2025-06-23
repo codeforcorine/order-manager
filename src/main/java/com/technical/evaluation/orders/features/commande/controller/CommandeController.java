@@ -47,7 +47,7 @@ public class CommandeController {
             description = "Mettre à jour le statut de la commande dans le système."
     )
     @PutMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
-    public SimpleApiResponse updateStatus(@PathVariable(value = "id") UUID id, Statut statut){
+    public SimpleApiResponse updateStatus(@PathVariable(value = "id") UUID id, @RequestParam(name = "statut") Statut statut){
         return service.changerStatut(id, statut);
     }
     @Operation(

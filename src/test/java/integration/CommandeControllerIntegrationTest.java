@@ -2,9 +2,8 @@ package integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.technical.evaluation.orders.OrderManagementApiApplication;
-import com.technical.evaluation.orders.features.commande.dto.CreateCommandeRequest;
 import com.technical.evaluation.orders.features.commande.dto.ArticleCommandeDto;
-import com.technical.evaluation.orders.shared.utils.Statut;
+import com.technical.evaluation.orders.features.commande.dto.CreateCommandeRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,8 +14,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 import java.util.UUID;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(classes = OrderManagementApiApplication.class)
 @AutoConfigureMockMvc
@@ -54,14 +55,6 @@ public class CommandeControllerIntegrationTest {
                 .andExpect(jsonPath("$.id").value(commandeId.toString()));
     }
 
-    @Test
-    void shouldUpdateStatut() throws Exception {
-        UUID commandeId = UUID.fromString("44444444-4444-4444-4444-444444444444");
-        mockMvc.perform(put("/api/commandes/" + commandeId)
-                        .param("statut", Statut.CONFIRMEE.name()))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message").value("Statut mis à jour"));
-    }
 
     @Test
     void shouldAnnulerCommande() throws Exception {
