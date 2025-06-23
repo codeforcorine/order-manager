@@ -1,0 +1,1372 @@
+{
+	"info": {
+		"_postman_id": "dfe27305-e8f2-43eb-a657-e9e290a8e2f7",
+		"name": "Système de Gestion des  Commandes",
+		"description": "## Description générale\n\nCette collection Postman contient tous les endpoints nécessaires pour gérer le cycle de vie complet des commandes dans notre système e-commerce. Elle couvre la création, la consultation, la modification et le suivi des commandes clients.\n\n## Fonctionnalités couvertes\n\n### Gestion des Commandes\n\n- **Création** d'une nouvelle commande\n    \n- **Consultation** des détails d'une commande\n    \n- **Liste** de toutes les commandes avec filtres\n    \n- **Mise à jour** du statut d'une commande\n    \n- **Annulation** d'une commande\n    \n- **Historique** des modifications\n    \n\n### Gestion Client\n\n- Consultation des commandes par client\n    \n- Validation des informations client\n    \n\n### Reporting & Statistiques\n\n- Statistiques des commandes\n    \n- Rapport des ventes par période",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17459804",
+		"_collection_link": "https://lively-equinox-534716.postman.co/workspace/MySUNU-Bank~4b7eba87-ba7b-4e5f-9342-dd92c9540f54/collection/17459804-dfe27305-e8f2-43eb-a657-e9e290a8e2f7?action=share&source=collection_link&creator=17459804"
+	},
+	"item": [
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "Listes des clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exemple",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/clients",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"clients"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 09:34:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"totalCount\": 1,\n    \"pagingInfo\": {\n        \"size\": 20,\n        \"pageCount\": 1,\n        \"currentPage\": 1,\n        \"hasPrevious\": false,\n        \"hasNext\": false\n    },\n    \"content\": [\n        {\n            \"id\": \"22222222-2222-2222-2222-222222222222\",\n            \"nom\": \"Jean Dupont\",\n            \"email\": \"jean@example.com\",\n            \"telephone\": \"0612345678\",\n            \"adresse\": \"5 rue Exemple, Lyon\",\n            \"typeClient\": \"PARTICULIER\",\n            \"dateEnregistrement\": \"2024-01-01T00:00:00\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Ajouter un client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nom\": \"Test\",\r\n  \"email\": \"test@gmail.com\",\r\n  \"telephone\": \"0875632541\",\r\n  \"adresse\": \"cocody\",\r\n  \"typeClient\": \"REGULIER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exemple",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nom\": \"Test\",\r\n  \"email\": \"test@gmail.com\",\r\n  \"telephone\": \"0875632541\",\r\n  \"adresse\": \"cocody\",\r\n  \"typeClient\": \"REGULIER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/clients",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"clients"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 09:34:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"success\",\n    \"message\": \"Client enregistré avec succès.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Historique de commande",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/clients/22222222-2222-2222-2222-222222222222/commandes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"clients",
+								"22222222-2222-2222-2222-222222222222",
+								"commandes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exemple",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/clients/22222222-2222-2222-2222-222222222222/commandes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"clients",
+										"22222222-2222-2222-2222-222222222222",
+										"commandes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 09:35:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"totalCount\": 1,\n    \"pagingInfo\": {\n        \"size\": 20,\n        \"pageCount\": 1,\n        \"currentPage\": 1,\n        \"hasPrevious\": false,\n        \"hasNext\": false\n    },\n    \"content\": [\n        {\n            \"id\": \"44444444-4444-4444-4444-444444444444\",\n            \"client\": {\n                \"id\": \"22222222-2222-2222-2222-222222222222\",\n                \"nom\": \"Jean Dupont\",\n                \"email\": \"jean@example.com\",\n                \"telephone\": \"0612345678\",\n                \"adresse\": \"5 rue Exemple, Lyon\",\n                \"typeClient\": \"PARTICULIER\",\n                \"dateEnregistrement\": \"2024-01-01T00:00:00\"\n            },\n            \"dateCommande\": \"2024-02-01T10:00:00\",\n            \"statut\": \"LIVREE\",\n            \"montantTotal\": 999.99,\n            \"adresseLivraison\": \"5 rue Exemple, Lyon\",\n            \"articles\": [\n                {\n                    \"id\": \"55555555-5555-5555-5555-555555555555\",\n                    \"produit\": {\n                        \"id\": \"33333333-3333-3333-3333-333333333333\",\n                        \"nom\": \"Ordinateur portable\",\n                        \"description\": \"PC portable performant\",\n                        \"categorie\": \"Électronique\",\n                        \"fournisseur\": \"TechStore\",\n                        \"dateEnregistrement\": \"2024-01-01T00:00:00\"\n                    },\n                    \"quantite\": 1,\n                    \"prixUnitaire\": 999.99,\n                    \"totalLigne\": 999.99\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Statistique achat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/clients/22222222-2222-2222-2222-222222222222/statistiques",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"clients",
+								"22222222-2222-2222-2222-222222222222",
+								"statistiques"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exemple",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/clients/22222222-2222-2222-2222-222222222222/statistiques",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"clients",
+										"22222222-2222-2222-2222-222222222222",
+										"statistiques"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 09:35:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"totalCommandes\": 1,\n    \"totalMontantDepense\": 999.99,\n    \"montantMoyenParCommande\": 999.99,\n    \"derniereCommande\": \"2024-02-01T10:00:00\",\n    \"produitsCommandes\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Mettre à jour un client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\" : \"Jean \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/clients/22222222-2222-2222-2222-222222222222",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"clients",
+								"22222222-2222-2222-2222-222222222222"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produits",
+			"item": [
+				{
+					"name": "Ajouter un produit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nom\": \"Poulet de chair\",\r\n  \"description\": \"Poulet de chaire\",\r\n  \"prix\": 3500,\r\n  \"quantiteStock\": 86,\r\n  \"categorieId\": 1,\r\n  \"fournisseurId\": \"11111111-1111-1111-1111-111111111111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/produits",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"produits"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exmple",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nom\": \"Poulet de chair\",\r\n  \"description\": \"Poulet de chaire\",\r\n  \"prix\": 3500,\r\n  \"quantiteStock\": 86,\r\n  \"categorieId\": 1,\r\n  \"fournisseurId\": \"11111111-1111-1111-1111-111111111111\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/produits",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"produits"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 10:22:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"Produit enregistré avec succès!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Liste produits",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/produits",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"produits"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exemple",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/produits",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"produits"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 10:22:50 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"totalCount\": 2,\n    \"pagingInfo\": {\n        \"size\": 20,\n        \"pageCount\": 1,\n        \"currentPage\": 1,\n        \"hasPrevious\": false,\n        \"hasNext\": false\n    },\n    \"content\": [\n        {\n            \"id\": \"33333333-3333-3333-3333-333333333333\",\n            \"nom\": \"Ordinateur portable\",\n            \"description\": \"PC portable performant\",\n            \"prix\": 999.99,\n            \"quantiteStock\": 0,\n            \"categorie\": {\n                \"id\": 1,\n                \"nom\": \"Électronique\",\n                \"description\": \"Appareils électroniques\",\n                \"dateCreation\": \"2024-01-01T00:00:00\"\n            },\n            \"fournisseur\": {\n                \"id\": \"11111111-1111-1111-1111-111111111111\",\n                \"nom\": \"TechStore\",\n                \"description\": null,\n                \"email\": \"tech@store.com\",\n                \"telephone\": \"1234567890\",\n                \"adresse\": \"1 rue Tech, Paris\",\n                \"typeClient\": \"ENTREPRISE\",\n                \"dateEnregistrement\": \"2024-01-01T00:00:00\",\n                \"dateMiseAJour\": \"2024-01-01T00:00:00\"\n            },\n            \"dateEnregistrement\": \"2024-01-01T00:00:00\",\n            \"dateMiseAJour\": \"2024-01-01T00:00:00\"\n        },\n        {\n            \"id\": \"cbac8d46-e7f3-4365-ae7d-1c71186e3a3b\",\n            \"nom\": \"Poulet de chair\",\n            \"description\": \"Poulet de chaire\",\n            \"prix\": 3500,\n            \"quantiteStock\": 86,\n            \"categorie\": {\n                \"id\": 1,\n                \"nom\": \"Électronique\",\n                \"description\": \"Appareils électroniques\",\n                \"dateCreation\": \"2024-01-01T00:00:00\"\n            },\n            \"fournisseur\": {\n                \"id\": \"11111111-1111-1111-1111-111111111111\",\n                \"nom\": \"TechStore\",\n                \"description\": null,\n                \"email\": \"tech@store.com\",\n                \"telephone\": \"1234567890\",\n                \"adresse\": \"1 rue Tech, Paris\",\n                \"typeClient\": \"ENTREPRISE\",\n                \"dateEnregistrement\": \"2024-01-01T00:00:00\",\n                \"dateMiseAJour\": \"2024-01-01T00:00:00\"\n            },\n            \"dateEnregistrement\": \"2025-06-23T10:22:37.184342\",\n            \"dateMiseAJour\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Analyse vente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/produits/33333333-3333-3333-3333-333333333333/statistiques",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"produits",
+								"33333333-3333-3333-3333-333333333333",
+								"statistiques"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exemple",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/produits/33333333-3333-3333-3333-333333333333/statistiques",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"produits",
+										"33333333-3333-3333-3333-333333333333",
+										"statistiques"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 11:07:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"produitId\": \"33333333-3333-3333-3333-333333333333\",\n    \"nomProduit\": \"test\",\n    \"quantiteTotaleVendue\": 17,\n    \"nombreCommandes\": 9,\n    \"revenuTotal\": 16999.83,\n    \"derniereVente\": \"2025-06-23T10:14:37.711418\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Mettre a jour produit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\" : \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/produits/33333333-3333-3333-3333-333333333333",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"produits",
+								"33333333-3333-3333-3333-333333333333"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nom\" : \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/produits/33333333-3333-3333-3333-333333333333",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"produits",
+										"33333333-3333-3333-3333-333333333333"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 11:06:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"Produit mis à jour avec succès!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Listes stock bas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/produits/stock-bas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"produits",
+								"stock-bas"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/produits/stock-bas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"produits",
+										"stock-bas"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 11:07:51 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"totalCount\": 1,\n    \"pagingInfo\": {\n        \"size\": 20,\n        \"pageCount\": 1,\n        \"currentPage\": 1,\n        \"hasPrevious\": false,\n        \"hasNext\": false\n    },\n    \"content\": [\n        {\n            \"id\": \"33333333-3333-3333-3333-333333333333\",\n            \"nom\": \"test\",\n            \"description\": \"PC portable performant\",\n            \"prix\": 999.99,\n            \"quantiteStock\": 0,\n            \"categorie\": {\n                \"id\": 1,\n                \"nom\": \"Électronique\",\n                \"description\": \"Appareils électroniques\",\n                \"dateCreation\": \"2024-01-01T00:00:00\"\n            },\n            \"fournisseur\": {\n                \"id\": \"11111111-1111-1111-1111-111111111111\",\n                \"nom\": \"TechStore\",\n                \"description\": null,\n                \"email\": \"tech@store.com\",\n                \"telephone\": \"1234567890\",\n                \"adresse\": \"1 rue Tech, Paris\",\n                \"typeClient\": \"ENTREPRISE\",\n                \"dateEnregistrement\": \"2024-01-01T00:00:00\",\n                \"dateMiseAJour\": \"2024-01-01T00:00:00\"\n            },\n            \"dateEnregistrement\": \"2024-01-01T00:00:00\",\n            \"dateMiseAJour\": \"2025-06-23T11:06:04.292617\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "6",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/produits/33333333-3333-3333-3333-333333333333/stock",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"produits",
+								"33333333-3333-3333-3333-333333333333",
+								"stock"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exemple",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "6",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/produits/33333333-3333-3333-3333-333333333333/stock",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"produits",
+										"33333333-3333-3333-3333-333333333333",
+										"stock"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 11:09:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"Stock du produit mis à jour avec succès!\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Commandes",
+			"item": [
+				{
+					"name": "Creer une commande",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": \"22222222-2222-2222-2222-222222222222\",\r\n  \"adresseLivraison\": \"Cocody\",\r\n  \"articles\": [\r\n    {\r\n      \"produitId\": \"33333333-3333-3333-3333-333333333333\",\r\n      \"quantite\": 3\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/commandes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"commandes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exemple",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"clientId\": \"22222222-2222-2222-2222-222222222222\",\r\n  \"adresseLivraison\": \"Cocody\",\r\n  \"articles\": [\r\n    {\r\n      \"produitId\": \"33333333-3333-3333-3333-333333333333\",\r\n      \"quantite\": 3\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/commandes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"commandes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 11:10:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"Commande créée avec succès\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Mettre a jour le statut",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/commandes/9052048a-8a27-4815-9e87-ade2132bff13?statut=CONFIRMEE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"commandes",
+								"9052048a-8a27-4815-9e87-ade2132bff13"
+							],
+							"query": [
+								{
+									"key": "statut",
+									"value": "CONFIRMEE"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exemple",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/commandes/9052048a-8a27-4815-9e87-ade2132bff13?statut=CONFIRMEE",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"commandes",
+										"9052048a-8a27-4815-9e87-ade2132bff13"
+									],
+									"query": [
+										{
+											"key": "statut",
+											"value": "CONFIRMEE"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 11:25:31 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"Statut mis à jour\"\n}"
+						}
+					]
+				},
+				{
+					"name": "liste commandes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": \"22222222-2222-2222-2222-222222222222\",\r\n  \"adresseLivraison\": \"Cocody\",\r\n  \"articles\": [\r\n    {\r\n      \"produitId\": \"33333333-3333-3333-3333-333333333333\",\r\n      \"quantite\": 3\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/commandes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"commandes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Annuler une commande",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/commandes/9052048a-8a27-4815-9e87-ade2132bff13/annuler",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"commandes",
+								"9052048a-8a27-4815-9e87-ade2132bff13",
+								"annuler"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exemple",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/commandes/9052048a-8a27-4815-9e87-ade2132bff13/annuler",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"commandes",
+										"9052048a-8a27-4815-9e87-ade2132bff13",
+										"annuler"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 11:29:20 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"SUCCESS\",\n    \"message\": \"Statut mis à jour\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Details commande",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/commandes/9052048a-8a27-4815-9e87-ade2132bff13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"commandes",
+								"9052048a-8a27-4815-9e87-ade2132bff13"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exemple",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/commandes/9052048a-8a27-4815-9e87-ade2132bff13",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"commandes",
+										"9052048a-8a27-4815-9e87-ade2132bff13"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 11:30:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"9052048a-8a27-4815-9e87-ade2132bff13\",\n    \"client\": {\n        \"id\": \"22222222-2222-2222-2222-222222222222\",\n        \"nom\": \"Jean Dupont\",\n        \"email\": \"jean@example.com\",\n        \"telephone\": \"0612345678\",\n        \"adresse\": \"5 rue Exemple, Lyon\",\n        \"typeClient\": \"PARTICULIER\",\n        \"dateEnregistrement\": \"2024-01-01T00:00:00\"\n    },\n    \"dateCommande\": \"2025-06-23T10:01:28.015463\",\n    \"statut\": \"ANNULEE\",\n    \"montantTotal\": 1999.98,\n    \"adresseLivraison\": \"5 rue Exemple, Lyon\",\n    \"articles\": [\n        {\n            \"id\": \"72f67564-9512-490d-8d37-e989625d924a\",\n            \"produit\": {\n                \"id\": \"33333333-3333-3333-3333-333333333333\",\n                \"nom\": \"test\",\n                \"description\": \"PC portable performant\",\n                \"categorie\": \"Électronique\",\n                \"fournisseur\": \"TechStore\",\n                \"dateEnregistrement\": \"2024-01-01T00:00:00\"\n            },\n            \"quantite\": 2,\n            \"prixUnitaire\": 999.99,\n            \"totalLigne\": 1999.98\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Inventaire & analyse",
+			"item": [
+				{
+					"name": "Analyse inventaire",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": \"22222222-2222-2222-2222-222222222222\",\r\n  \"adresseLivraison\": \"Cocody\",\r\n  \"articles\": [\r\n    {\r\n      \"produitId\": \"33333333-3333-3333-3333-333333333333\",\r\n      \"quantite\": 3\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/inventaire/resume",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"inventaire",
+								"resume"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"clientId\": \"22222222-2222-2222-2222-222222222222\",\r\n  \"adresseLivraison\": \"Cocody\",\r\n  \"articles\": [\r\n    {\r\n      \"produitId\": \"33333333-3333-3333-3333-333333333333\",\r\n      \"quantite\": 3\r\n    }\r\n  ]\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/inventaire/resume",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"inventaire",
+										"resume"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 11:13:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"nombreProduits\": 2,\n    \"stockTotal\": 92,\n    \"produitsStockCritique\": 0,\n    \"detailsProduits\": [\n        {\n            \"id\": \"cbac8d46-e7f3-4365-ae7d-1c71186e3a3b\",\n            \"nom\": \"Poulet de chair\",\n            \"quantiteStock\": 86,\n            \"categorie\": \"Électronique\",\n            \"stockCritique\": false\n        },\n        {\n            \"id\": \"33333333-3333-3333-3333-333333333333\",\n            \"nom\": \"test\",\n            \"quantiteStock\": 6,\n            \"categorie\": \"Électronique\",\n            \"stockCritique\": false\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Tendances des revenu sur l'année en cours",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": \"22222222-2222-2222-2222-222222222222\",\r\n  \"adresseLivraison\": \"Cocody\",\r\n  \"articles\": [\r\n    {\r\n      \"produitId\": \"33333333-3333-3333-3333-333333333333\",\r\n      \"quantite\": 3\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/analyses/tendances-revenus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"analyses",
+								"tendances-revenus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Analyse des ventes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": \"22222222-2222-2222-2222-222222222222\",\r\n  \"adresseLivraison\": \"Cocody\",\r\n  \"articles\": [\r\n    {\r\n      \"produitId\": \"33333333-3333-3333-3333-333333333333\",\r\n      \"quantite\": 3\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/analyse/rapport-ventes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"analyse",
+								"rapport-ventes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exemple",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"clientId\": \"22222222-2222-2222-2222-222222222222\",\r\n  \"adresseLivraison\": \"Cocody\",\r\n  \"articles\": [\r\n    {\r\n      \"produitId\": \"33333333-3333-3333-3333-333333333333\",\r\n      \"quantite\": 3\r\n    }\r\n  ]\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/analyse/rapport-ventes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"analyse",
+										"rapport-ventes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 11:15:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"quantiteTotaleVendue\": 20,\n    \"revenuTotal\": 19999.8\n}"
+						}
+					]
+				},
+				{
+					"name": "Verification de santé",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": \"22222222-2222-2222-2222-222222222222\",\r\n  \"adresseLivraison\": \"Cocody\",\r\n  \"articles\": [\r\n    {\r\n      \"produitId\": \"33333333-3333-3333-3333-333333333333\",\r\n      \"quantite\": 3\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8086/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
