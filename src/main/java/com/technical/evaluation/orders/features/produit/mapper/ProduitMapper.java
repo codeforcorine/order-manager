@@ -13,7 +13,7 @@ import java.util.List;
 public interface ProduitMapper {
 
     ProduitDto convertToDto(Produit produit);
-    List<Produit> convertToDtos(List<Produit> produitList);
+    List<ProduitDto> convertToDtos(List<Produit> produitList);
     Produit convertToEntity(CreateProduitRequest request);
     @Mapping(source = "categorie.nom", target = "categorie")
     @Mapping(source = "fournisseur.nom", target = "fournisseur")

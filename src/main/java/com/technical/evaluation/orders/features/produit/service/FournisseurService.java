@@ -19,7 +19,7 @@ public class FournisseurService {
     private final FournisseurRepository repository;
     private final FournisseurMapper mapper;
 
-    void existsById(UUID id){
+    public void existsById(UUID id){
         if(!repository.existsById(id)) throw new ApplicationException(ApiResponseCode.DATA_NOT_FOUND, "Ce fournisseur est introuvable.");
     }
 

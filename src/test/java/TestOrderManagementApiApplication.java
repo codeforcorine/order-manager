@@ -1,6 +1,6 @@
-package com.technical.evaluation.orders;
-
+import com.technical.evaluation.orders.OrderManagementApiApplication;
 import org.springframework.boot.SpringApplication;
+import org.testcontainers.utility.TestcontainersConfiguration;
 
 public class TestOrderManagementApiApplication {
 
