@@ -16,4 +16,7 @@ public class ArticleCommandeDto implements Serializable {
     private UUID produitId;
     int quantite;
 
+    public ArticleCommandeDto() {
+
+    }
 }

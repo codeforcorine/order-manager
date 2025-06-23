@@ -64,10 +64,6 @@ public class ClientService{
                 new DataNotFoundException("Client non trouvé"));
 
         mapper.update(client, request);
-        if(request.getTypeClient().name()!= null){
-            client.setTypeClient(request.getTypeClient().name());
-        }
-
         repository.save(client);
         return new SimpleApiResponse(ApiResponseCode.SUCCESS.getLabel(), "Client mis à jour avec succès.");
     }

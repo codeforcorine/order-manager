@@ -88,11 +88,11 @@ docker-compose up --build
 ```
 
 ### 2. Accès à l'API
-- API: http://localhost:8080/api
+- API: http://localhost:8086/api
 
-- Swagger UI: http://localhost:8080/swagger-ui.html
+- Swagger UI: http://localhost:8086/swagger-ui/index.html
 
-- RabbitMQ UI: http://localhost:15672 (user: commande_admin, pass: commande_pass)
+- RabbitMQ UI: http://localhost:15672/ (user: commande_admin, pass: commande_pas)
 
 ## 📬 Endpoints principaux
 

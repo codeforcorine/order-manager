@@ -1,6 +1,7 @@
 package integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.technical.evaluation.orders.OrderManagementApiApplication;
 import com.technical.evaluation.orders.features.client.dto.CreateClientRequest;
 import com.technical.evaluation.orders.features.client.entity.Client;
 import com.technical.evaluation.orders.features.client.enums.TypeClient;
@@ -13,31 +14,33 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@SpringBootTest(classes = OrderManagementApiApplication.class)
 @AutoConfigureMockMvc
 class ClientControllerIntegrationTest {
 
     @Autowired private MockMvc mockMvc;
-    @Autowired private ObjectMapper objectMapper;
+    @Autowired
+    private ObjectMapper objectMapper;
     @Autowired private ClientRepository clientRepository;
 
     private UUID existingClientId;
 
     @BeforeEach
     void setup() {
-        clientRepository.deleteAll();
         Client client = new Client();
-        client.setNom("Jean Dupont");
+        client.setNom("Jean");
         client.setEmail("jean@exemple.com");
-        client.setTelephone("0123456789");
+        client.setTelephone("0123582889");
         client.setAdresse("123 rue du Test");
         client.setTypeClient("REGULIER");
+        client.setDateEnregistrement(LocalDateTime.now());
         client = clientRepository.save(client);
         existingClientId = client.getId();
     }
