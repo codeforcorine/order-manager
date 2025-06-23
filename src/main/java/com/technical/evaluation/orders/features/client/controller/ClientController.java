@@ -2,6 +2,7 @@ package com.technical.evaluation.orders.features.client.controller;
 
 import com.technical.evaluation.orders.features.client.dto.ClientDto;
 import com.technical.evaluation.orders.features.client.dto.CreateClientRequest;
+import com.technical.evaluation.orders.features.client.dto.StatistiquesClientDto;
 import com.technical.evaluation.orders.features.client.dto.UpdateClientRequest;
 import com.technical.evaluation.orders.features.client.service.ClientService;
 import com.technical.evaluation.orders.features.commande.dto.CommandeDetailDto;
@@ -76,5 +77,14 @@ public class ClientController {
     @GetMapping(value = "{id}/commandes", produces = APPLICATION_JSON_VALUE)
     public CustomPage<CommandeDetailDto> historiqueCommande(@PathVariable(value = "id") UUID id, Pageable pageable){
         return service.historiqueCommande(id,pageable);
+    }
+
+    @Operation(
+            summary = "Statistiques d’achat du client",
+            description = "Statistiques d’achat du client."
+    )
+    @GetMapping(value = "{id}/statistiques", produces = APPLICATION_JSON_VALUE)
+    public StatistiquesClientDto statAchats(@PathVariable(value = "id") UUID id){
+        return service.calculerStatistiquesClient(id);
     }
 }

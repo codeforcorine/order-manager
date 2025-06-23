@@ -2,6 +2,7 @@ package com.technical.evaluation.orders.features.client.service;
 
 import com.technical.evaluation.orders.features.client.dto.ClientDto;
 import com.technical.evaluation.orders.features.client.dto.CreateClientRequest;
+import com.technical.evaluation.orders.features.client.dto.StatistiquesClientDto;
 import com.technical.evaluation.orders.features.client.dto.UpdateClientRequest;
 import com.technical.evaluation.orders.features.client.entity.Client;
 import com.technical.evaluation.orders.features.client.mapper.ClientMapper;
@@ -24,6 +25,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,5 +93,48 @@ public class ClientService{
         }
         return new CustomPage<>(commandes, results);
     }
+
+
+    public StatistiquesClientDto calculerStatistiquesClient(UUID clientId) {
+        Client client = findById(clientId);
+        List<Commande> commandes = commandeRepository.findAllByClient(client);
+
+        if (commandes.isEmpty()) {
+            return new StatistiquesClientDto(0L, BigDecimal.ZERO, BigDecimal.ZERO, null, 0L);
+        }
+
+        long totalCommandes = commandes.size();
+        BigDecimal totalDepense = commandes.stream()
+                .map(Commande::getMontantTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal montantMoyen = totalDepense.divide(BigDecimal.valueOf(totalCommandes), RoundingMode.HALF_UP);
+
+        LocalDateTime derniere = commandes.stream()
+                .map(Commande::getDateCommande)
+                .max(LocalDateTime::compareTo)
+                .orElse(null);
+
+        long totalProduits = calculerNombreTotalProduits(commandes);
+
+        return new StatistiquesClientDto(
+                totalCommandes,
+                totalDepense,
+                montantMoyen,
+                derniere,
+                totalProduits
+        );
+    }
+    private long calculerNombreTotalProduits(List<Commande> commandes) {
+        long total = 0;
+        for (Commande commande : commandes) {
+            for (ArticleCommande article : articleCommandeRepository.findAllByCommande(commande)) {
+                total += article.getQuantite();
+            }
+        }
+        return total;
+    }
+
+
 
 }

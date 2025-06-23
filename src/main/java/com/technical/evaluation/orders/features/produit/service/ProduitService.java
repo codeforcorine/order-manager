@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -87,5 +88,9 @@ public class ProduitService {
     public CustomPage<ProduitDto> findAllWithLowStock(Pageable pageable) {
         Page produits = repository.findByQuantiteStockLessThan(5, pageable);
         return new CustomPage<>(produits, mapper.convertToDtos(produits.toList()));
+    }
+
+    public List<Produit> findAll(){
+        return repository.findAll();
     }
 }

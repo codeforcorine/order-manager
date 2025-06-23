@@ -1,5 +1,8 @@
 package com.technical.evaluation.orders.features.produit.controller;
 
+import com.technical.evaluation.orders.features.client.dto.StatistiquesClientDto;
+import com.technical.evaluation.orders.features.commande.dto.HistoriqueVenteProduitDto;
+import com.technical.evaluation.orders.features.commande.service.CommandeService;
 import com.technical.evaluation.orders.features.produit.dto.CreateProduitRequest;
 import com.technical.evaluation.orders.features.produit.dto.ProduitDto;
 import com.technical.evaluation.orders.features.produit.dto.UpdateProduitRequest;
@@ -27,6 +30,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(Route.ROOT+Route.PRODUIT)
 public class ProduitController {
     private final ProduitService service;
+    private final CommandeService commandeService;
 
     @Operation(
             summary = "Lister tous les produits",
@@ -82,5 +86,14 @@ public class ProduitController {
     @GetMapping(value = "/stock-bas", produces = APPLICATION_JSON_VALUE)
     public CustomPage<ProduitDto> getAllproduitsWithLowStock(Pageable pageable){
         return service.findAllWithLowStock(pageable);
+    }
+
+    @Operation(
+            summary = "Statistiques de vente d'un produit",
+            description = "Statistiques d’achat du client."
+    )
+    @GetMapping(value = "{id}/statistiques", produces = APPLICATION_JSON_VALUE)
+    public HistoriqueVenteProduitDto statVente(@PathVariable(value = "id") UUID id){
+        return commandeService.getHistoriqueVenteProduit(id);
     }
 }

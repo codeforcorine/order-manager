@@ -2,10 +2,7 @@ package com.technical.evaluation.orders.features.commande.service;
 
 import com.technical.evaluation.orders.features.client.entity.Client;
 import com.technical.evaluation.orders.features.client.service.ClientService;
-import com.technical.evaluation.orders.features.commande.dto.ArticleCommandeDto;
-import com.technical.evaluation.orders.features.commande.dto.CommandeDetailDto;
-import com.technical.evaluation.orders.features.commande.dto.CreateCommandeRequest;
-import com.technical.evaluation.orders.features.commande.dto.DetailArticleCommande;
+import com.technical.evaluation.orders.features.commande.dto.*;
 import com.technical.evaluation.orders.features.commande.entity.ArticleCommande;
 import com.technical.evaluation.orders.features.commande.entity.Commande;
 import com.technical.evaluation.orders.features.commande.mapper.CommandeMapper;
@@ -27,9 +24,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -139,4 +134,37 @@ public class CommandeService {
     public Page<Commande> findAll(Pageable pageable){
         return repository.findAll(pageable);
     }
+
+    public HistoriqueVenteProduitDto getHistoriqueVenteProduit(UUID produitId) {
+        Produit produit = produitService.findById(produitId);
+
+        List<ArticleCommande> ventes = articleCommandeRepository.findAllByProduit(produit);
+
+        long quantiteTotale = 0;
+        BigDecimal revenuTotal = BigDecimal.ZERO;
+        Set<UUID> commandeIds = new HashSet<>();
+        LocalDateTime derniereVente = null;
+
+        for (ArticleCommande ac : ventes) {
+            quantiteTotale += ac.getQuantite();
+            revenuTotal = revenuTotal.add(ac.getTotalLigne());
+            commandeIds.add(ac.getCommande().getId());
+
+            LocalDateTime dateCmd = ac.getCommande().getDateCommande();
+            if (derniereVente == null || dateCmd.isAfter(derniereVente)) {
+                derniereVente = dateCmd;
+            }
+        }
+
+        HistoriqueVenteProduitDto dto = new HistoriqueVenteProduitDto();
+        dto.setProduitId(produitId);
+        dto.setNomProduit(produit.getNom());
+        dto.setQuantiteTotaleVendue(quantiteTotale);
+        dto.setNombreCommandes(commandeIds.size());
+        dto.setRevenuTotal(revenuTotal);
+        dto.setDerniereVente(derniereVente);
+
+        return dto;
+    }
+
 }
