@@ -167,4 +167,8 @@ public class CommandeService {
         return dto;
     }
 
+    public List<Commande> findAll(){
+        return repository.findAll();
+    }
+
 }
