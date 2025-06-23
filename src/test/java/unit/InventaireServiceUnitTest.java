@@ -66,19 +66,20 @@ class InventaireServiceUnitTest {
     void getRapportVentes_shouldAggregateData() {
         ArticleCommande a1 = new ArticleCommande();
         a1.setQuantite(2);
-        a1.setTotalLigne(BigDecimal.valueOf(50)); // ← ceci doit exister et être pris en compte
+        a1.setPrixUnitaire(BigDecimal.valueOf(25)); // 25 * 2 = 50
 
         ArticleCommande a2 = new ArticleCommande();
         a2.setQuantite(3);
-        a2.setTotalLigne(BigDecimal.valueOf(75)); // ← idem
+        a2.setPrixUnitaire(BigDecimal.valueOf(25)); // 25 * 3 = 75
 
         when(articleCommandeRepository.findAll()).thenReturn(List.of(a1, a2));
 
         var rapport = inventaireService.getRapportVentes();
 
         assertThat(rapport.getRevenuTotal()).isEqualTo(BigDecimal.valueOf(125));
-        assertThat(rapport.()).isEqualTo(5);
+        assertThat(rapport.getQuantiteTotaleVendue()).isEqualTo(5);
     }
+
 
 
     @Test
